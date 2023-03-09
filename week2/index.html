@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>문단 제목 달기</title>
+</head>
+
+<body>
+  <h1 id="top" title="h1태그로 작성하였습니다.">1장 홈페이지 만들기</h1>
+  <h2 title="h2태그로 작성하였습니다.">1절 HTML 언어</h2>
+  <h3>1. 웹</h3>
+  <h4>1.1 인터넷</h4>
+  <h5>1.1.1 네트워크</h5>
+  <h6>1.1.1.1 통신</h6>
+
+  hX[ title = aa ] (ctrl+space) Enter
+
+  <p> p { content } (ctrl+space) Enter </p>
+  <br>
+  br: line break
+  <br>
+  <hr>
+  hr: horizontal line
+  <hr>
+
+  <a href="https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references"> &lt; 문법적인 목적과의 혼동을 막기 위해
+    직접
+    사용 불허 &gt;</a>
+
+  pre & code 태그를 활용해서 JS 코드에 대한 설명 첨부하기
+  <p>This is the <code>Panel</code> constructor:</p>
+  <pre><code>
+  function Panel(element, canClose, closeHandler) {
+    this.element = element;
+    this.canClose = canClose;
+    this.closeHandler = function () { if (closeHandler) closeHandler() };
+  }</code></pre>
+
+
+  ul>(li>ol>li*2)+li (ctrl+space) Enter
+  <ul>
+    <li>
+      <ol>
+        <li></li>
+        <li></li>
+      </ol>
+    </li>
+    <li></li>
+  </ul>
+
+  <dl>
+    <dt><b>Internet Explorer</b></dt>
+    <dd>마이크로소프트에서 만든 브라우저로 현재 국내 시장에서 가장 많이 사용</dd>
+
+    <dt><b>Firefox</b></dt>
+    <dd>Mozilla 재단에서 오픈 소스로 만든 것으로 W3C의 웹 표준을 선도</dd>
+
+    <dt><b>Chrome</b></dt>
+    <dd>구글에서 만든 것으로 좋은 디버거를 갖추고 있어 디버깅에 많이 사용</dd>
+  </dl>
+
+  table>caption+(tr>th*3)+(tr>td*3)*3
+
+  <table>
+    <caption></caption>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+
+
+  <a href="#top">top</a>
+
+</body>
+
+</html>
