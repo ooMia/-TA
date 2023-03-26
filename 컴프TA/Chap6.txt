@@ -1,0 +1,231 @@
+// 6-1
+#include <stdio.h>
+
+int main()
+{
+    printf("문자를 입력하시오:"); char c = getchar();
+
+    switch (c)
+    {
+    case 'a': case 'e':case 'i': case 'o': case 'u':
+        printf("모음입니다."); break;
+
+    default:
+        printf("자음입니다."); break;
+    }
+
+    return 0;
+}
+
+
+
+// 6-2
+#include <stdio.h>
+
+int main()
+{
+int x, y;
+
+printf("정수를 입력하시오:"); scanf_s(" %d", &x);
+printf("정수를 입력하시오:"); scanf_s(" %d", &y);
+
+printf("약수%s", (x % y == 0) ? "입니다." : "가 아닙니다.");
+
+return 0;
+}
+
+
+
+// 6-3
+#include <stdio.h>
+
+int main()
+{
+
+int x, y, z, min;
+
+printf("3개의 정수를 입력하시오:"); scanf_s(" %d %d %d", &x, &y, &z);
+
+
+
+if (x < y) {
+if (x < z) min = x;
+else min = z;
+}
+else if (y < z) min = y;
+else min = z;
+
+printf("제일 작은 정수는 %d입니다.", min);
+
+return 0;
+}
+
+
+
+// 6-4
+#include <stdio.h>
+#include <stdlib.h> // srand, rand
+#include <time.h>// time
+
+int main()
+{
+// INITIALIZE
+srand((unsigned)time(NULL));
+int user, computer = rand() % 3 + 1;
+char type[][5] = { "","가위","바위","보" };
+
+
+
+// INPUT
+do {
+printf("선택하시오(1:가위, 2:바위, 3:보) "); scanf_s(" %d", &user);
+if (user > 3 || user <= 0) system("cls");
+} while (user > 3 || user <= 0);
+
+
+
+// OUTPUT
+printf("사용자: %s, 컴퓨터: %s\n", type[user], type[computer]);
+if (user == computer) printf("비겼음");
+else if ((user == 1 && computer == 3) || (user > computer)) printf("사용자가 이겼음");
+else printf("사용자가 졌음");
+
+return 0;
+}
+
+
+
+// 6-5
+#include <stdio.h>
+
+int main()
+{
+int height, age;
+
+printf("키를 입력하시오:"); scanf_s(" %d", &height);
+printf("나이를 입력하시오:"); scanf_s(" %d", &age);
+
+if ((height >= 140) && (age >= 10)) printf("타도 좋습니다.");
+else printf("죄송합니다.");
+
+return 0;
+}
+
+
+
+// 6-6
+#include <stdio.h>
+
+int main()
+{
+char month[][4] = { "","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec" };
+
+int m;
+printf("월번호를 입력하시오:"); scanf_s(" %d", &m);
+printf("%s", month[m]);
+
+// 또는 switch(m){ case 1: printf("Jan"); break; case 2: ... }
+
+return 0;
+}
+
+
+
+// 6-7
+#include <stdio.h>
+
+int main()
+{
+double weight, height;
+
+printf("키와 체중을 입력하세요:"); scanf_s(" %lf %lf", &height, &weight);
+double standard = (height - 100) * 0.9;
+
+if (weight == standard) printf("표준 ");
+else if (weight < standard) printf("저");
+else printf("과"); printf("체중입니다.");
+
+return 0;
+}
+
+
+
+// 6-8
+#include <stdio.h>
+
+int main()
+{
+int time, age, charge;
+printf("현재 시간과 나이를 입력하시오(시간, 나이):"); scanf_s(" %d %d", &time, &age);
+
+if (17 <= time) { charge = 10000; }
+else if ((3 <= age && age <= 12) || 65 <= age) charge = 25000;
+else charge = 34000;
+
+printf("요금은 %d입니다.", charge);
+
+return 0;
+}
+
+
+
+// 6-9
+#include <stdio.h>
+
+int main()
+{
+double x, result;|
+printf("x의 값을 입력하시오:"); scanf_s(" %lf", &x);
+
+if (x <= 0) result = x * x - 9 * x + 2;
+else result = 7 * x + 2;
+
+printf("f(x)의 값은 %f", result);
+
+return 0;
+}
+
+
+
+// 6-10
+#include <stdio.h>
+
+int main()
+{
+double x, y; int result;
+printf("좌표(x y): "); scanf_s(" %lf %lf", &x, &y);
+
+if (x > 0 && y > 0) result = 1;
+else if (x > 0 && y < 0) result = 4;
+else if (x < 0 && y > 0) result = 2;
+else if (x < 0 && y < 0) result = 3;
+else result = 0;
+
+printf("%d사분면", result);
+
+return 0;
+}
+
+
+
+// 6-11
+#include <stdio.h>
+
+int main()
+{
+printf("문자를 입력하시오: ");char ch = getchar();
+
+if ('a' <= ch) ch -= ('a' - 'A');
+
+switch (ch)
+{
+case 'R': printf("Rectangle"); break;
+case 'T': printf("Triangle"); break;
+case 'C': printf("Circle"); break;
+
+default: printf("Unknown"); break;
+}
+
+return 0;
+}
+

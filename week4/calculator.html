@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #calculator {
+      width: 300px;
+      height: 300px;
+      border-collapse: collapse;
+
+    }
+
+    #calculator input {
+      width: 100%;
+      height: 100%;
+      font-size: 100%;
+
+    }
+  </style>
+
+</head>
+
+<body>
+  <h3>버튼 만들기</h3>
+  <hr>
+  <input type="text" id="exp">
+
+  <table id="calculator">
+    <tr>
+      <td><input type="button" id="operand" value="7" onclick="exp.value = this.value"></td>
+      <td><input type="button" class="operand" value="8" onclick="exp.value = this.value"></td>
+      <td><input type="button" class="operand" value="9" onclick="exp.value = this.value"></td>
+      <td rowspan="2"><input type="button" class="operator" value="+" style="width:50%;"></td>
+    </tr>
+    <tr>
+      <td><input type="button" class="operand" value="4" onclick="exp.value = this.value"></td>
+      <td><input type="button" class="operand" value="5" onclick="exp.value = this.value"></td>
+      <td><input type="button" class="operand" value="6" onclick="exp.value = this.value"></td>
+    </tr>
+    <tr>
+      <td><input type="button" class="operand" value="1" onclick="exp.value = this.value"></td>
+      <td><input type="button" class="operand" value="2" onclick="exp.value = this.value"></td>
+      <td><input type="button" class="operand" value="3" onclick="exp.value = this.value"></td>
+      <td rowspan="2"><input type="button" class="operator" value="Enter" style="width:50%;"></td>
+    </tr>
+    <tr>
+      <td colspan="2"><input type="button" class="operand" value="0" onclick="exp.value = this.value"></td>
+      <td><input type="button" class="operand" value="."></td>
+    </tr>
+  </table>
+</body>
+
+</html>

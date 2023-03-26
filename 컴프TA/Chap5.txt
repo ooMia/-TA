@@ -1,0 +1,165 @@
+// 5-1
+#include <stdio.h>
+int main()
+{
+    int x, y;
+    printf("2개의 정수를 입력하시오:"); scanf_s("%d %d", &x, &y);
+    printf("몫:%d 나머지: %d", x / y, x % y);
+    return 0;
+}
+
+
+// 5-2
+#include <stdio.h>
+int main()
+{
+       double x, y, result;
+       printf("두개의 실수를 입력하시오: ");
+       scanf_s("%lf %lf", &x, &y);
+
+       result = x + y;       printf("%f / %f = %f\n", x, y, result);
+       result = x - y;        printf("%f - %f = %f\n", x, y, result);
+       result = x * y;       printf("%f * %f = %f\n", x, y, result);
+       result = x / y;        printf("%f / %f = %f\n", x, y, result);
+       return 0;
+}
+
+
+
+// 5-3
+#include <stdio.h>
+int main()
+{
+    int x, y, z;
+    printf("3개의 정수를 입력하시오:"); scanf_s("%d %d %d", &x, &y, &z);
+    printf("최대값:%d", x > y ? (x > z ? x : z) : (y > z ? y : z));
+    return 0;
+}
+
+
+// 5-4
+#include <stdio.h>
+int main(void)
+{
+    int cm, feet;
+    double inch;
+    printf("키를 입력하시오(cm):"); scanf_s("%d", &cm);
+    inch = cm / 2.54;
+    feet = inch / 12;
+    inch = inch - feet * 12;
+    printf("%dcm는 %d피트 %f인치입니다.", cm, feet, inch);
+    return 0;
+}
+
+
+// 5-5
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    int x;
+    
+    do {
+        printf("100보다 작은 자연수를 입력하시오:"); scanf_s(" %d", &x);
+        if (x >= 100 || x < 0) system("cls");
+    } while (x >= 100 || x < 0);
+    printf("십의 자리:%d\n일의 자리:%d", x / 10, x % 10);
+    return 0;
+}
+
+
+// 5-6
+#include <stdio.h>
+int main(void)
+{
+    int x;
+    printf("정수를 입력하시오:"); scanf_s("%d", &x);
+    printf("2의 보수:%d", ~x + 1);
+    return 0;
+}
+
+
+// 5-7
+#include <stdio.h>
+int main()
+{
+    int x, y;
+    printf("정수를 입력하시오:"); scanf_s(" %d", &x);
+    printf("2를 곱하고 싶은 횟수:"); scanf_s(" %d", &y);
+    printf("%d<<%d의 값: %d", x, y, x << y);
+    return 0;
+}
+
+
+// 5-8
+#include <stdio.h>
+#define _USE_MATH_DEFINES
+#include <math.h>
+#define PI (M_PI)
+int main()
+{
+    double r;
+    printf("구의 반지름을 입력하시오:"); scanf_s(" %lf", &r);
+    printf("표면적은 %f입니다.\n", 4. * PI * pow(r, 2.));
+    printf("체적은 %f입니다.\n", 4. / 3. * PI * pow(r, 3.));
+    return 0;
+}
+
+
+// 5-9
+#include <stdio.h>
+int main() {
+    double BC, AC, AE;
+    printf("지팡이의 높이를 입력하시오 :"); scanf_s(" %lf", &BC);
+    printf("지팡이 그림자의 길이를 입력하시오 :"); scanf_s(" %lf", &AC);
+    printf("피라미드까지의 거리를 입력하시오 :"); scanf_s(" %lf", &AE);
+    printf("피라미드의 높이는% f입니다.", AE * BC / AC);
+    return 0;
+}
+
+
+// 5-10
+#include <stdio.h>
+int main() {
+    double x, y;
+    printf("x 좌표를 입력하시오: "); scanf_s(" %lf", &x);
+    printf("y 좌표를 입력하시오: "); scanf_s(" %lf", &y);
+
+    int result = 
+    (x > 0)
+        ? (y > 0 ? 1 : 4)
+        : (y > 0 ? 2 : 3);
+    printf("%d사분면", result);
+
+    return 0;
+}
+
+
+
+// 5-11
+#include <stdio.h>
+#define _USE_MATH_DEFINES
+#include <math.h>
+#define PI (3.14) // M_PI
+int main()
+{
+    double distance, degree;
+    printf("거리를 입력하시오:"); scanf_s(" %lf", &distance);
+    printf("각도를 입력하시오:"); scanf_s(" %lf", &degree);
+    printf("지구의 반지름은 %f\n", (360. / degree) * distance / (2. * PI));
+    return 0;
+}
+
+
+// 5-12
+#include <stdio.h>
+int main()
+{
+    unsigned int result = 0;
+    char a;
+    printf("첫번째 문자를 입력하시오: "); scanf_s(" %c", &a, 1); result = result | (a << 0);
+    printf("두번째 문자를 입력하시오: "); scanf_s(" %c", &a, 1); result = result | (a << 8);
+    printf("세번째 문자를 입력하시오: "); scanf_s(" %c", &a, 1); result = result | (a << 16);
+    printf("네번째 문자를 입력하시오: "); scanf_s(" %c", &a, 1); result = result | (a << 24);
+    return 0;
+}

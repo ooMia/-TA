@@ -1,0 +1,313 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+void Q1() {
+struct book {
+int id;
+char title[200];
+char author[20];
+};
+struct book b1 = { 1, "바람과 함께 사라지다", "마가렛 미첼" };
+printf("{ %d, %s, %s }\n", b1.id, b1.title, b1.author);
+}
+void Q2() {
+struct account {
+int number;
+char name[20];
+int balance;
+};
+struct account a1 = { 1, "홍길동", 100'000 };
+printf("{ %d, %s, %d }\n", a1.number, a1.name, a1.balance);
+}
+void Q3() {
+struct mail {
+char title[200];
+char sender[50];
+char receiver[200];
+char content[1000];
+char date[50];
+int priority;
+};
+struct mail m1 = {
+"안부 메일", "chulsoo@hankuk.ac.kr", "hsu@hankuk.ac.kr",
+"안녕하십니까? 별일 없으신지요?", "2010/9/1", 1
+};
+printf(
+"제목: %s\n 수신자: %s\n 발신자: %s\n 내용: %s\n 날짜: %s\n 우선순위: %d\n",
+m1.title, m1.sender, m1.receiver, m1.content, m1.date, m1.priority
+);
+}
+struct complex {
+double real;
+double imag;
+};
+struct complex complex_add(struct complex c1, struct complex c2) {
+struct complex res = { c1.real + c2.real, c1.imag + c2.imag };
+return res;
+}
+void Q4() {
+struct complex c1 = { 1., 2. };
+struct complex c2 = { 2., 3. };
+struct complex c3 = complex_add(c1, c2);
+printf(
+"%lf+%lfi\n%lf+%lfi\n%lf+%lfi\n",
+c1.real, c1.imag, c2.real, c2.imag, c3.real, c3.imag
+);
+}
+struct point {
+int x, y;
+};
+int equal_1(struct point p1, struct point p2) {
+return (p1.x == p2.x) && (p1.y == p2.y);
+}
+void Q5() {
+struct point p1 = { 1, 2 };
+struct point p2 = { 3, 5 };
+printf("(%d, %d) %s (%d, %d)\n",
+p1.x, p1.y, equal_1(p1, p2) ? "==" : "!=", p2.x, p2.y);
+}
+int equal_2(struct point* p1, struct point* p2) {
+return (p1->x == p2->x) && (p1->y == p2->y);
+}
+void Q6() {
+struct point p1 = { 1, 2 };
+struct point p2 = { 1, 2 };
+printf("(%d, %d) %s (%d, %d)\n",
+p1.x, p1.y, equal_2(&p1, &p2) ? "==" : "!=", p2.x, p2.y);
+}
+int quadrant(struct point p) {
+if (p.y >= 0) return (p.x < 0) ? 2 : 1;
+else return (p.x < 0) ? 3 : 4;
+}
+void Q7() {
+struct point p1 = { -1, 2 };
+printf("(%d, %d)의 사분면 = %d\n",
+p1.x, p1.y, quadrant(p1));
+}
+//#define USING_TYPEDEF
+#ifdef USING_TYPEDEF
+typedef struct circle {
+struct point center; // 원의 중심
+double radius; // 원의 반지름
+} CIRCLE;
+double area(CIRCLE c) { return 3.14 * c.radius * c.radius; }
+double perimeter(CIRCLE c) { return 3.14 * c.radius * 2; }
+#else
+struct circle {
+struct point center; // 원의 중심
+double radius; // 원의 반지름
+};
+double area(struct circle c) { return 3.14 * c.radius * c.radius; }
+double perimeter(struct circle c) { return 3.14 * c.radius * 2; }
+#endif
+void Q8() {
+struct point p1 = { 0,0 };
+#ifdef USING_TYPEDEF
+CIRCLE c1 = { p1, 10. };
+#else
+struct circle c1 = { p1, 10. };
+#endif
+printf(
+"원의 중심점: %d %d\n 원의 반지름: %lf\n 원의 면적=%lf, 원의 둘레=%lf\n",
+c1.center.x, c1.center.y, c1.radius, area(c1), perimeter(c1));
+}
+void Q9() {
+struct food {
+char name[100];
+int calories;
+};
+struct food food_array[3] = { 0 };
+int len = sizeof(food_array) / sizeof(struct food);
+int calories_sum = 0, i = 0;
+for (int i = 0; i < len; i++) {
+scanf_s(" %s", &(food_array[i].name), 100);
+scanf_s(" %d", &(food_array[i].calories));
+calories_sum += food_array[i].calories;
+}
+printf("총 칼로리=%d", calories_sum);
+}
+void Q10() {
+typedef struct {
+int id;
+char name[50];
+char phone[200];
+int age;
+} employee;
+employee arr[10] = {
+{ 0, "홍길동 0", "010-1234-1234", 29 },
+{ 1, "홍길동 1", "010-1234-1234", 38 },
+{ 2, "홍길동 2", "010-1234-1234", 27 },
+{ 3, "홍길동 3", "010-1234-1234", 36 },
+{ 4, "홍길동 4", "010-1234-1234", 25 },
+{ 5, "홍길동 5", "010-1234-1234", 34 },
+{ 6, "홍길동 6", "010-1234-1234", 23 },
+{ 7, "홍길동 7", "010-1234-1234", 32 },
+{ 8, "홍길동 8", "010-1234-1234", 21 },
+{ 9, "홍길동 9", "010-1234-1234", 30 },
+};
+for (int i = 0; i < 10; i++) {
+employee* ptr = (arr + i);
+if (20 <= ptr->age && ptr->age <= 30)
+printf("이름=%s 나이=%d\n", ptr->name, ptr->age);
+}
+}
+typedef struct {
+char name[50];
+char home[20];
+char mobile[20];
+} Contact;
+Contact* getContactByName(Contact* const arr, int arrSize, char* const name) {
+for (int i = 0; i < arrSize; i++)
+if (strcmp(name, arr[i].name) == 0) return arr + i;
+return NULL;
+}
+void Q11() {
+Contact arr[3] = {
+{ "홍길동 0", "02-1234-1234", "010-1234-1234" },
+{ "홍길동 1", "031-123-1234", "010-4321-4321" },
+{ "홍길동 2", "070-123-1234", "010-0000-0000" }
+};
+int arrSize = sizeof(arr) / sizeof(Contact);
+char name[50];
+printf("검색할 이름을 입력하시오:");
+scanf_s(" %s", &name, 50);
+Contact* res;
+if (res = getContactByName(arr, arrSize, name))
+printf("집전화번호: %s\n", res->home),
+printf("휴대폰번호: %s\n", res->mobile);
+}
+void Q12() {
+struct card {
+int value; // [1, 13]
+char suit; // c, d, h, s
+};
+struct card cardSet[4][13 + 1] = { 0 };
+char suitType[] = { 'c', 'd', 'h', 's' };
+for (int iSuit = 0; iSuit < sizeof(suitType); iSuit++) {
+for (int iValue = 1; iValue <= 13; iValue++) {
+struct card* ptr = &cardSet[iSuit][iValue];
+ptr->suit = suitType[iSuit];
+ptr->value = iValue;
+}
+}
+for (int iSuit = 0; iSuit < sizeof(suitType); iSuit++) {
+for (int iValue = 1; iValue <= 13; iValue++) {
+struct card* ptr = &cardSet[iSuit][iValue];
+printf("%d:%c ", ptr->value, ptr->suit);
+}
+}
+}
+void Q13() {
+struct shape {
+int type; // 도형의 종류를 나타낸다.
+union {
+struct { int base, height; } tri;
+struct { int width, height; } rect;
+struct { int radius; } circ;
+} data;
+} s = { 0 };
+printf("도형의 타입을 입력하시오(0, 1, 2): ");
+scanf_s(" %d", &s.type);
+switch (s.type)
+{
+case 0: // 삼각형
+{
+printf("밑변과 높이의 길이를 입력하시오:");
+scanf_s(" %d %d", &s.data.tri.base, &s.data.tri.height);
+auto b = s.data.tri.base, h = s.data.tri.height;
+printf("면적은 %.1lf\n", b * h * 0.5);
+} break;
+case 1: // 사각형
+{
+printf("가로와 세로의 길이를 입력하시오:");
+scanf_s(" %d %d", &s.data.rect.width, &s.data.rect.height);
+auto w = s.data.rect.width, h = s.data.rect.height;
+printf("면적은 %d\n", w * h);
+} break;
+case 2: // 원
+{
+printf("반지름의 길이를 입력하시오:");
+scanf_s(" %d", &(s.data.circ.radius));
+auto r = s.data.circ.radius;
+printf("면적은 %.2lf\n", r * r * 3.14);
+} break;
+default: break; // UNDEFINED 
+}
+}
+struct song {
+char title[50];
+char singer[50];
+char directory[50];
+int genre; // 0:가요 1:팝 2:클래식 3:영화음악
+};
+char genreType[][30] = { "가요","팝","클래식","영화음악" };
+struct songManager {
+int size;
+struct song data[50];
+} sm;
+void addSong(struct songManager* const sm) {
+struct song* ptr = &(sm->data[sm->size]);
+printf("제목:"); scanf_s(" %[^\n]s", ptr->title, 50);
+printf("가수:"); scanf_s(" %[^\n]s", ptr->singer, 50);
+printf("위치:"); scanf_s(" %[^\n]s", ptr->directory, 50);
+printf("장르(0: %s, 1: %s, 2: %s, 3: %s):",
+genreType[0], genreType[1], genreType[2], genreType[3]);
+scanf_s(" %d", &(ptr->genre));
+sm->size++;
+}
+void printSong(const struct song* const s)
+{
+printf("제목: %s\n 가수: %s\n 위치: %s\n 장르: %s\n",
+s->title, s->singer, s->directory, genreType[s->genre]);
+}
+void printSongs(const struct songManager* const sm)
+{
+for (int i = 0; i < sm->size; i++) printSong(&(sm->data[i]));
+}
+struct song* searchSongByTitle(struct songManager* const sm, const char* const title) {
+for (int i = 0; i < sm->size; i++)
+if (strcmp(title, sm->data[i].title) == 0) return &(sm->data[i]);
+return NULL;
+}
+void Q14() {
+int menu; char buf[50];
+struct songManager sm = { 0 };
+while (1) {
+puts("==================");
+puts(" 1. 추가");
+puts(" 2. 출력");
+puts(" 3. 검색");
+puts(" 4. 종료");
+puts("==================");
+do {
+printf("정수값을 입력하시오 : "); scanf_s(" %d", &menu);
+} while (menu < 1 || 4 < menu);
+if (menu == 4) break;
+switch (menu)
+{
+case 1: addSong(&sm); break;
+case 2: printSongs(&sm); break;
+case 3:
+printf("검색할 제목:"); scanf_s(" %[^\n]s", buf, 50);
+printSong(searchSongByTitle(&sm, buf)); break;
+}
+}
+}
+int main()
+{
+//Q1();
+//Q2();
+//Q3();
+//Q4();
+//Q5();
+//Q6();
+//Q7();
+//Q8();
+//Q9();
+//Q10();
+//Q11();
+//Q12();
+//Q13();
+//Q14();
+return 0;
+}
